@@ -3,6 +3,7 @@ import './App.css';
 import Person from './Person/Person';
 
 class App extends Component {
+  // LIST: List of persons
   state = {
     persons : [
       { 'id': 'sjds1', 'name': 'Suara', 'age': 20 },
@@ -13,16 +14,28 @@ class App extends Component {
     showPersons: false
   }
 
-  nameChangedHandler = ( event ) => {
-    this.setState({
-      persons: [
-        { 'name': 'Suara', 'age': 20 },
-        { 'name': event.target.value, 'age': 24 },
-        { 'name': 'Siy', 'age': 21 }
-      ]
+  // NOTE: nameChangedHandler
+  nameChangedHandler = ( event, id ) => {
+    const personIndex = this.state.persons.findIndex(p => {
+      return p.id === id;
     });
+
+    const person = {
+      ...this.state.persons[personIndex]
+    };
+
+    // ALTERNATIVE: mutate object with assign
+    // const person = Object.assign({}, this.state.persons[personIndex]);
+    
+    person.name = event.target.value;
+
+    const persons = [...this.state.persons];
+    persons[personIndex] = person
+
+    this.setState({ persons: persons });
   }
 
+  // NOTE: togglePersonHandler
   togglePersonHandler = () => {
     const doesShow = this.state.showPersons;
     this.setState({
@@ -30,6 +43,7 @@ class App extends Component {
     });
   }
 
+  // NOTE: deletePersonHandler
   deletePersonHandler = (personIndex) => {
     // const persons = this.state.persons.slice();
     const persons = [...this.state.persons];
@@ -47,7 +61,7 @@ class App extends Component {
     };
 
     let persons = null;
-
+    // :CURRENT: current work line
     if ( this.state.showPersons ) {
       persons = (
         <div>
@@ -56,7 +70,8 @@ class App extends Component {
             name={person.name}
             age={person.age}
             key={person.id}
-            click={this.deletePersonHandler.bind(this, index)} />
+            click={this.deletePersonHandler.bind(this, index)}
+            changed={(event) => this.nameChangedHandler(event, person.id)} />
           })}
         </div>
       )
