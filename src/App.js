@@ -53,11 +53,15 @@ class App extends Component {
 
   render() {
     const style = {
-      backgroundColor: 'white',
+      backgroundColor: 'green',
       font: 'inherit',
-      border: '1px solid red',
+      border: '1px solid transparent',
       padding: '8px',
-      cursor: 'pointer'
+      cursor: 'pointer',
+      color: 'white',
+      outline: 'none',
+      borderRadius: '4px',
+      boxShadow: '0 4px 8px .12px rgba(0, 0, 0, 0.25)'
     };
 
     let persons = null;
@@ -75,6 +79,7 @@ class App extends Component {
           })}
         </div>
       )
+      style.backgroundColor = 'red';
     }
 
     return (
