@@ -81,11 +81,19 @@ class App extends Component {
       )
       style.backgroundColor = 'red';
     }
+    
+    const classes = [];
+    if ( this.state.persons.length <= 2 ) {
+      classes.push("red");
+    }
+    if ( this.state.persons.length <= 1 ) {
+      classes.push("bold");
+    }
 
     return (
       <div className="App">
         <h1>Hi, I'am React App!</h1>
-        <p>This is really working!</p>
+        <p className={classes.join(" ")}>This is really working!</p>
         
         {/* by using () => this.eventHandler(data) be aware this can be inefficient  */}
         {/* using this.eventHandler.bind(this, data) instead */}
