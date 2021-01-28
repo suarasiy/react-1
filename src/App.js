@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import './App.css';
+// import './App.css';
+import Styles from './App.module.css';
 import Person from './Person/Person';
-import Radium, { StyleRoot } from 'radium';
+// import Radium, { StyleRoot } from 'radium';
 
 class App extends Component {
   // LIST: List of persons
@@ -53,24 +54,27 @@ class App extends Component {
   }
 
   render() {
-    const style = {
-      backgroundColor: 'green',
-      font: 'inherit',
-      border: '1px solid transparent',
-      padding: '8px',
-      cursor: 'pointer',
-      color: 'white',
-      outline: 'none',
-      borderRadius: '4px',
-      boxShadow: '0 4px 8px .12px rgba(0, 0, 0, 0.25)',
-      transition: '.2s linear 0s',
-      ':hover': {
-        backgroundColor: 'white',
-        border: '1px solid green',
-        color: 'green'
-      }
-    };
+    // const style = {
+    //   backgroundColor: 'green',
+    //   font: 'inherit',
+    //   border: '1px solid transparent',
+    //   padding: '8px',
+    //   cursor: 'pointer',
+    //   color: 'white',
+    //   outline: 'none',
+    //   borderRadius: '4px',
+    //   boxShadow: '0 4px 8px .12px rgba(0, 0, 0, 0.25)',
+    //   transition: '.2s linear 0s',
+    //   ':hover': {
+    //     backgroundColor: 'white',
+    //     border: '1px solid green',
+    //     color: 'green'
+    //   }
+    // };
 
+    const btn_styles = {
+      Style: Styles.button_normal
+    };
     let persons = null;
     // :CURRENT: current work line
     if ( this.state.showPersons ) {
@@ -86,12 +90,14 @@ class App extends Component {
           })}
         </div>
       )
-      style.backgroundColor = 'red';
-      style[':hover'] = {
-        backgroundColor: 'white',
-        color: 'red',
-        border: '1px solid red'
-      }
+      btn_styles.Style = Styles.button_active;
+      // <button className={Styles.button.active} />
+      // style.backgroundColor = 'red';
+      // style[':hover'] = {
+      //   backgroundColor: 'white',
+      //   color: 'red',
+      //   border: '1px solid red'
+      // }
     }
     
     const classes = [];
@@ -103,24 +109,22 @@ class App extends Component {
     }
 
     return (
-      <StyleRoot>
-        <div className="App">
-          <h1>Hi, I'am React App!</h1>
-          <p className={classes.join(" ")}>This is really working!</p>
-          
-          {/* by using () => this.eventHandler(data) be aware this can be inefficient  */}
-          {/* using this.eventHandler.bind(this, data) instead */}
+      <div className={Styles.App}>
+        <h1>Hi, I'am React App!</h1>
+        <p className={classes.join(" ")}>This is really working!</p>
+        
+        {/* by using () => this.eventHandler(data) be aware this can be inefficient  */}
+        {/* using this.eventHandler.bind(this, data) instead */}
 
-          <button
-            style={style}
-            onClick={this.togglePersonHandler}>
-            Toggle Persons
-          </button>
-          {persons}
-        </div>
-      </StyleRoot>
+        <button
+          className={btn_styles.Style}
+          onClick={this.togglePersonHandler}>
+          Toggle Persons
+        </button>
+        {persons}
+      </div>
     )
   }
 }
 
-export default Radium(App);
+export default App;

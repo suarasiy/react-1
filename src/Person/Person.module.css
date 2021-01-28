@@ -10,3 +10,10 @@
 .Person:hover {
     border: 1px solid red;
 }
+
+@media (max-width: 500px) {
+    .Person {
+        border: 1px solid blue;
+        border-radius: 5px;
+    }
+}
