@@ -1,14 +1,11 @@
 import React from 'react';
 import Style from './Person.module.css';
-// import Radium from 'radium';
 
 const person = ( props ) => {
-    // const style = {
-    //     '@media (max-width: 500px)': {
-    //         border: '1px solid blue',
-    //         borderRadius: '5px'
-    //     }
-    // }
+    const rnd = Math.random();
+    if ( rnd > 0.7 ) {
+        throw new Error("Something went wrong");
+    }
 
     return (
         <div className={Style.Person}>

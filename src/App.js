@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-// import './App.css';
 import Styles from './App.module.css';
 import Person from './Person/Person';
-// import Radium, { StyleRoot } from 'radium';
+import ErrorBoundaries from './ErrorBoundaries/ErrorBoundaries';
 
 class App extends Component {
   // LIST: List of persons
@@ -54,24 +53,6 @@ class App extends Component {
   }
 
   render() {
-    // const style = {
-    //   backgroundColor: 'green',
-    //   font: 'inherit',
-    //   border: '1px solid transparent',
-    //   padding: '8px',
-    //   cursor: 'pointer',
-    //   color: 'white',
-    //   outline: 'none',
-    //   borderRadius: '4px',
-    //   boxShadow: '0 4px 8px .12px rgba(0, 0, 0, 0.25)',
-    //   transition: '.2s linear 0s',
-    //   ':hover': {
-    //     backgroundColor: 'white',
-    //     border: '1px solid green',
-    //     color: 'green'
-    //   }
-    // };
-
     const btn_styles = {
       Style: Styles.button_normal
     };
@@ -81,23 +62,17 @@ class App extends Component {
       persons = (
         <div>
           {this.state.persons.map((person, index) => {
-            return <Person 
-            name={person.name}
-            age={person.age}
-            key={person.id}
-            click={this.deletePersonHandler.bind(this, index)}
-            changed={(event) => this.nameChangedHandler(event, person.id)} />
+            return <ErrorBoundaries key={person.id}>
+              <Person 
+              name={person.name}
+              age={person.age}
+              click={this.deletePersonHandler.bind(this, index)}
+              changed={(event) => this.nameChangedHandler(event, person.id)} />
+            </ErrorBoundaries>
           })}
         </div>
       )
       btn_styles.Style = Styles.button_active;
-      // <button className={Styles.button.active} />
-      // style.backgroundColor = 'red';
-      // style[':hover'] = {
-      //   backgroundColor: 'white',
-      //   color: 'red',
-      //   border: '1px solid red'
-      // }
     }
     
     const classes = [];
