@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Styles from './App.module.css';
-import Person from './Person/Person';
-import ErrorBoundaries from './ErrorBoundaries/ErrorBoundaries';
+import Person from '../components/Persons/Person/Person';
+import ErrorBoundaries from '../errors/ErrorBoundaries/ErrorBoundaries';
 
 class App extends Component {
   // LIST: List of persons
